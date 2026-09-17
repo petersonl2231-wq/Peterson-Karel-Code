@@ -1,0 +1,35 @@
+{
+    "name": "Becker Karel Classroom",
+
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
+   
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack"
+            ]
+        }
+    },
+
+    "forwardPorts": [
+        6080
+    ],
+
+    "portsAttributes": {
+        "6080": {
+            "label": "Karel Display",
+           "onAutoForward": "openBrowser",
+            "protocol": "http"
+        }
+    },
+
+    "remoteUser": "vscode",
+    "containerEnv": {
+    "DISPLAY": ":1"
+    },
+    "postAttachCommand": "nohup bash scripts/start-display.sh > /tmp/karel-display.log 2>&1 </dev/null &"
+   
+}
